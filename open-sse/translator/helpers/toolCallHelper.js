@@ -45,6 +45,7 @@ export function getToolCallIds(msg) {
   // Claude format: tool_use blocks in content
   if (Array.isArray(msg.content)) {
     for (const block of msg.content) {
+      if (!block) continue;
       if (block.type === "tool_use" && block.id) {
         ids.push(block.id);
       }
@@ -66,6 +67,7 @@ export function hasToolResults(msg, toolCallIds) {
   // Claude format: tool_result blocks in user message content
   if (msg.role === "user" && Array.isArray(msg.content)) {
     for (const block of msg.content) {
+      if (!block) continue;
       if (block.type === "tool_result" && toolCallIds.includes(block.tool_use_id)) {
         return true;
       }
