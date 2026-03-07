@@ -24,6 +24,9 @@ export function filterToOpenAIFormat(body) {
       const filteredContent = [];
       
       for (const block of msg.content) {
+        // Skip null/undefined blocks (defensive guard)
+        if (!block) continue;
+
         // Skip thinking blocks
         if (block.type === "thinking" || block.type === "redacted_thinking") continue;
         
@@ -125,3 +128,21 @@ export function filterToOpenAIFormat(body) {
   return body;
 }
 
+// Normalize messages[*].content from array to string for providers that don't support content arrays
+// e.g. [{type:"text",text:"hello"},{type:"text",text:"world"}] → "hello\nworld"
+export function normalizeContentToString(body) {
+  if (!body.messages || !Array.isArray(body.messages)) return body;
+
+  body.messages = body.messages.map(msg => {
+    if (Array.isArray(msg.content)) {
+      const text = msg.content
+        .filter(b => b && b.type === "text")
+        .map(b => b.text || "")
+        .join("\n");
+      return { ...msg, content: text };
+    }
+    return msg;
+  });
+
+  return body;
+}

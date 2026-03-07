@@ -8,9 +8,10 @@ export function hasValidContent(msg) {
   if (typeof msg.content === "string" && msg.content.trim()) return true;
   if (Array.isArray(msg.content)) {
     return msg.content.some(block =>
-      (block.type === "text" && block.text?.trim()) ||
+      block &&
+      ((block.type === "text" && block.text?.trim()) ||
       block.type === "tool_use" ||
-      block.type === "tool_result"
+      block.type === "tool_result")
     );
   }
   return false;
@@ -25,13 +26,14 @@ export function fixToolUseOrdering(messages) {
   // Pass 1: Fix assistant messages with tool_use - remove text after tool_use
   for (const msg of messages) {
     if (msg.role === "assistant" && Array.isArray(msg.content)) {
-      const hasToolUse = msg.content.some(b => b.type === "tool_use");
+      const hasToolUse = msg.content.some(b => b && b.type === "tool_use");
       if (hasToolUse) {
         // Keep only: thinking blocks + tool_use blocks (remove text blocks after tool_use)
         const newContent = [];
         let foundToolUse = false;
         
         for (const block of msg.content) {
+          if (!block) continue;
           if (block.type === "tool_use") {
             foundToolUse = true;
             newContent.push(block);
@@ -61,8 +63,8 @@ export function fixToolUseOrdering(messages) {
       const msgContent = Array.isArray(msg.content) ? msg.content : [{ type: "text", text: msg.content }];
       
       // Put tool_result first, then other content
-      const toolResults = [...lastContent.filter(b => b.type === "tool_result"), ...msgContent.filter(b => b.type === "tool_result")];
-      const otherContent = [...lastContent.filter(b => b.type !== "tool_result"), ...msgContent.filter(b => b.type !== "tool_result")];
+      const toolResults = [...lastContent.filter(b => b && b.type === "tool_result"), ...msgContent.filter(b => b && b.type === "tool_result")];
+      const otherContent = [...lastContent.filter(b => b && b.type !== "tool_result"), ...msgContent.filter(b => b && b.type !== "tool_result")];
       
       last.content = [...toolResults, ...otherContent];
     } else {
@@ -146,6 +148,7 @@ export function prepareClaudeRequest(body, provider = null, apiKey = null) {
           
           // Always replace signature for all thinking blocks
           for (const block of msg.content) {
+            if (!block) continue;
             if (block.type === "thinking" || block.type === "redacted_thinking") {
               block.signature = DEFAULT_THINKING_CLAUDE_SIGNATURE;
               hasThinking = true;

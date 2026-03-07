@@ -76,6 +76,7 @@ export function translateNonStreamingResponse(responseBody, targetFormat, source
     const toolCalls = [];
 
     for (const block of responseBody.content) {
+      if (!block) continue;
       if (block.type === "text") textContent += block.text;
       else if (block.type === "thinking") thinkingContent += block.thinking || "";
       else if (block.type === "tool_use") {

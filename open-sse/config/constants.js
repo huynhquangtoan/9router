@@ -406,6 +406,10 @@ export const PROVIDERS = {
   chutes: {
     baseUrl: "https://llm.chutes.ai/v1/chat/completions",
     format: "openai"
+  },
+  ollama: {
+    baseUrl: "https://ollama.com/v1/chat/completions",
+    format: "openai"
   }
 };
 
