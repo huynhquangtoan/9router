@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import { useNotificationStore } from "@/store/notificationStore";
 import Sidebar from "../Sidebar";
 import Header from "../Header";
@@ -32,6 +33,7 @@ function getToastStyle(type) {
 
 export default function DashboardLayout({ children }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const pathname = usePathname();
   const notifications = useNotificationStore((state) => state.notifications);
   const removeNotification = useNotificationStore((state) => state.removeNotification);
 
@@ -90,7 +92,7 @@ export default function DashboardLayout({ children }) {
 
       {/* Main content */}
       <main className="flex flex-col flex-1 h-full min-w-0 relative transition-colors duration-300">
-        <Header onMenuClick={() => setSidebarOpen(true)} />
+        <Header key={pathname} onMenuClick={() => setSidebarOpen(true)} />
         <div className="flex-1 overflow-y-auto custom-scrollbar p-6 lg:p-10">
           <div className="max-w-7xl mx-auto">{children}</div>
         </div>
