@@ -200,6 +200,26 @@ export async function POST(request) {
           break;
         }
 
+        case "ollama": {
+          const testModel = getDefaultModel(provider) || "gpt-oss:120b";
+          const completionUrl = `https://ollama.com/v1/chat/completions`;
+          const res = await fetch(completionUrl, {
+            method: "POST",
+            headers: {
+              "Authorization": `Bearer ${apiKey}`,
+              "content-type": "application/json",
+            },
+            body: JSON.stringify({
+              model: testModel,
+              max_tokens: 1,
+              messages: [{ role: "user", content: "test" }],
+            }),
+          });
+          // 401/403 = invalid key, anything else (incl. 404 model not found) = key is valid
+          isValid = res.status !== 401 && res.status !== 403;
+          break;
+        }
+
         default:
           return NextResponse.json({ error: "Provider validation not supported" }, { status: 400 });
       }
