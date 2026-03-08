@@ -16,6 +16,8 @@
   [![License](https://img.shields.io/npm/l/9router.svg)](https://github.com/decolua/9router/blob/main/LICENSE)
   
   [🚀 Quick Start](#-quick-start) • [💡 Features](#-key-features) • [📖 Setup](#-setup-guide) • [🌐 Website](https://9router.com)
+
+  [🇻🇳 Tiếng Việt](./i18n/README.vi.md) • [🇨🇳 中文](./i18n/README.zh-CN.md)
 </div>
 
 ---
@@ -145,7 +147,7 @@ Default URLs:
     <tr>
       <td align="center" width="120">
         <img src="./public/providers/claude.png" width="60" alt="Claude Code"/><br/>
-        <b>Claude Code</b>
+        <b>Claude-Code</b>
       </td>
       <td align="center" width="120">
         <img src="./public/providers/openclaw.png" width="60" alt="OpenClaw"/><br/>
@@ -162,6 +164,10 @@ Default URLs:
       <td align="center" width="120">
         <img src="./public/providers/cursor.png" width="60" alt="Cursor"/><br/>
         <b>Cursor</b>
+      </td>
+      <td align="center" width="120">
+        <img src="./public/providers/antigravity.png" width="60" alt="Antigravity"/><br/>
+        <b>Antigravity</b>
       </td>
     </tr>
     <tr>
@@ -182,8 +188,12 @@ Default URLs:
         <b>Roo</b>
       </td>
       <td align="center" width="120">
-        <img src="./public/providers/antigravity.png" width="60" alt="Antigravity"/><br/>
-        <b>Antigravity</b>
+        <img src="./public/providers/copilot.png" width="60" alt="Copilot"/><br/>
+        <b>Copilot</b>
+      </td>
+      <td align="center" width="120">
+        <img src="./public/providers/kilocode.png" width="60" alt="Kilo Code"/><br/>
+        <b>Kilo Code</b>
       </td>
     </tr>
   </table>
@@ -193,7 +203,36 @@ Default URLs:
 
 ## 🌐 Supported Providers
 
-### 🆓 Free Providers (Unlimited)
+### 🔐 OAuth Providers
+
+<div align="center">
+  <table>
+    <tr>
+      <td align="center" width="120">
+        <img src="./public/providers/claude.png" width="60" alt="Claude Code"/><br/>
+        <b>Claude-Code</b>
+      </td>
+      <td align="center" width="120">
+        <img src="./public/providers/antigravity.png" width="60" alt="Antigravity"/><br/>
+        <b>Antigravity</b>
+      </td>
+      <td align="center" width="120">
+        <img src="./public/providers/codex.png" width="60" alt="Codex"/><br/>
+        <b>Codex</b>
+      </td>
+      <td align="center" width="120">
+        <img src="./public/providers/github.png" width="60" alt="GitHub"/><br/>
+        <b>GitHub</b>
+      </td>
+      <td align="center" width="120">
+        <img src="./public/providers/cursor.png" width="60" alt="Cursor"/><br/>
+        <b>Cursor</b>
+      </td>
+    </tr>
+  </table>
+</div>
+
+### 🆓 Free Providers
 
 <div align="center">
   <table>
@@ -217,35 +256,6 @@ Default URLs:
         <img src="./public/providers/kiro.png" width="70" alt="Kiro"/><br/>
         <b>Kiro AI</b><br/>
         <sub>Claude • Unlimited</sub>
-      </td>
-    </tr>
-  </table>
-</div>
-
-### 🔐 OAuth Providers
-
-<div align="center">
-  <table>
-    <tr>
-      <td align="center" width="120">
-        <img src="./public/providers/claude.png" width="60" alt="Claude Code"/><br/>
-        <b>Claude Code</b>
-      </td>
-      <td align="center" width="120">
-        <img src="./public/providers/antigravity.png" width="60" alt="Antigravity"/><br/>
-        <b>Antigravity</b>
-      </td>
-      <td align="center" width="120">
-        <img src="./public/providers/codex.png" width="60" alt="Codex"/><br/>
-        <b>Codex</b>
-      </td>
-      <td align="center" width="120">
-        <img src="./public/providers/github.png" width="60" alt="GitHub"/><br/>
-        <b>GitHub</b>
-      </td>
-      <td align="center" width="120">
-        <img src="./public/providers/cursor.png" width="60" alt="Cursor"/><br/>
-        <b>Cursor</b>
       </td>
     </tr>
   </table>
@@ -1301,3 +1311,4 @@ MIT License - see [LICENSE](LICENSE) for details.
 <div align="center">
   <sub>Built with ❤️ for developers who code 24/7</sub>
 </div>
+
